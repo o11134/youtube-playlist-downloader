@@ -50,6 +50,7 @@ Add screenshots here (placeholders):
 
 - Windows 10 or Windows 11
 - Python 3.11+
+- Inno Setup 6 (optional, for creating installer)
 
 ## Installation & Run
 
@@ -79,7 +80,7 @@ python -m pip install -r requirements.txt
 python main.py
 ```
 
-## Build .exe
+## Build Single .exe + Installer
 
 Run:
 
@@ -87,11 +88,18 @@ Run:
 .\build.bat
 ```
 
-Build output:
+Build outputs:
 
 ```text
 dist\KineticDownloader.exe
+dist\KineticDownloader-Setup.exe
 ```
+
+Notes:
+
+- `KineticDownloader.exe` is a single-file app generated with PyInstaller.
+- `KineticDownloader-Setup.exe` is created only if Inno Setup 6 is installed.
+- If Inno Setup is missing, `build.bat` still builds the `.exe` and skips installer generation.
 
 Manual PyInstaller command (if needed):
 
@@ -99,12 +107,19 @@ Manual PyInstaller command (if needed):
 pyinstaller --noconfirm --clean --onefile --noconsole --name "KineticDownloader" --icon "assets\icon.ico" --add-data "assets;assets" --collect-all customtkinter --collect-all yt_dlp --collect-all imageio_ffmpeg --hidden-import PIL._tkinter_finder --hidden-import win10toast "main.py"
 ```
 
+Manual installer build (optional):
+
+1. Install Inno Setup 6.
+2. Open `installer.iss` in Inno Setup Compiler and click Build.
+3. Installer output will be created in `dist\KineticDownloader-Setup.exe`.
+
 ## Project Structure
 
 ```text
 youtube-playlist-downloader/
 ├── main.py
 ├── build.bat
+├── installer.iss
 ├── requirements.txt
 ├── README.md
 ├── assets/

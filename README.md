@@ -2,14 +2,32 @@
 
 Professional YouTube playlist downloader with a Kinetic Console UI.
 
-## Screenshots
+## Quick Installation (Top Priority)
 
-Add screenshots here (placeholders):
+Use this if you just want to install and use the app like any normal Windows program.
 
-- `docs/screenshots/dashboard.png`
-- `docs/screenshots/playlists.png`
-- `docs/screenshots/history.png`
-- `docs/screenshots/settings.png`
+1. Download `KineticDownloader-Setup.exe`.
+2. Run the installer.
+3. Click Next -> Install -> Finish.
+4. Open **Kinetic Downloader** from Start Menu (or Desktop shortcut if selected).
+
+End-user requirements:
+
+- Windows 10 or Windows 11
+
+You do **not** need:
+
+- Python
+- pip
+- Inno Setup
+
+## Portable Option (No Installer)
+
+If you prefer a direct app file, use:
+
+- `KineticDownloader.exe`
+
+This is a single-file executable that can run directly on Windows.
 
 ## Features
 
@@ -46,41 +64,26 @@ Add screenshots here (placeholders):
 - Preference persistence:
   - remembers output folder, format/quality, concurrency, toggles, theme mode
 
-## Requirements
+## Screenshots
+
+Add screenshots here (placeholders):
+
+- `docs/screenshots/dashboard.png`
+- `docs/screenshots/playlists.png`
+- `docs/screenshots/history.png`
+- `docs/screenshots/settings.png`
+
+## For Developers (Build From Source)
+
+Use this section only if you want to build the project yourself.
+
+Build requirements:
 
 - Windows 10 or Windows 11
 - Python 3.11+
-- Inno Setup 6 (optional, for creating installer)
+- Inno Setup 6 (only if you want to build `KineticDownloader-Setup.exe` yourself)
 
-## Installation & Run
-
-1. Clone or download this project.
-2. Open terminal in project root (`youtube-playlist-downloader`).
-3. Create virtual environment:
-
-```bat
-python -m venv .venv
-```
-
-4. Activate virtual environment:
-
-```bat
-.venv\Scripts\activate
-```
-
-5. Install dependencies:
-
-```bat
-python -m pip install -r requirements.txt
-```
-
-6. Run app:
-
-```bat
-python main.py
-```
-
-## Build Single .exe + Installer
+### Build single `.exe` + installer
 
 Run:
 
@@ -97,9 +100,9 @@ dist\KineticDownloader-Setup.exe
 
 Notes:
 
-- `KineticDownloader.exe` is a single-file app generated with PyInstaller.
-- `KineticDownloader-Setup.exe` is created only if Inno Setup 6 is installed.
-- If Inno Setup is missing, `build.bat` still builds the `.exe` and skips installer generation.
+- `KineticDownloader.exe` is generated with PyInstaller.
+- `KineticDownloader-Setup.exe` is generated only when Inno Setup is available.
+- If Inno Setup is missing, `build.bat` still builds `.exe` and skips installer generation.
 
 Manual PyInstaller command (if needed):
 
@@ -107,11 +110,12 @@ Manual PyInstaller command (if needed):
 pyinstaller --noconfirm --clean --onefile --noconsole --name "KineticDownloader" --icon "assets\icon.ico" --add-data "assets;assets" --collect-all customtkinter --collect-all yt_dlp --collect-all imageio_ffmpeg --hidden-import PIL._tkinter_finder --hidden-import win10toast "main.py"
 ```
 
-Manual installer build (optional):
+Manual installer build (if needed):
 
 1. Install Inno Setup 6.
-2. Open `installer.iss` in Inno Setup Compiler and click Build.
-3. Installer output will be created in `dist\KineticDownloader-Setup.exe`.
+2. Open `installer.iss` in Inno Setup Compiler.
+3. Click Build.
+4. Output is created at `dist\KineticDownloader-Setup.exe`.
 
 ## Project Structure
 
